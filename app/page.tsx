@@ -174,77 +174,27 @@ export default async function HomePage() {
         </section>
 
         <section className="main-grid" id="markets">
-          <div className="panel">
-            <div className="panel-header">
-              <div className="panel-title">نرخ لحظه‌ای</div>
-              <div className="panel-filter">بروزرسانی: {tehranTime()}</div>
-            </div>
-
-            <table className="markets-table">
-              <thead>
-                <tr>
-                  <th>دارایی</th>
-                  <th>قیمت</th>
-                  <th>تغییر</th>
-                  <th>وضعیت</th>
-                </tr>
-              </thead>
-              <tbody>
-                {assets.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <Link href={`/assets/${item.id}`} className="asset-row-btn">
-                        {item.name}
-                      </Link>
-                      {item.demo && <DemoBadge />}
-                    </td>
-                    <td>{formatNumber(item.price)}</td>
-                    <td>
-                      <span className={item.trend === 'up' ? 'positive' : 'negative'}>
-                        {item.change}
-                      </span>
-                    </td>
-                    <td className={item.trend === 'up' ? 'positive' : 'negative'}>
-                      {item.trend === 'up' ? 'افزایش' : 'کاهش'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="panel market-table-panel">
+            <div className="panel-header"><div className="panel-title">نرخ لحظه‌ای</div><div className="panel-filter">بروزرسانی: {tehranTime()}</div></div>
+            <div className="markets-table-wrap"><table className="markets-table"><thead><tr><th>دارایی</th><th>قیمت</th><th>تغییر</th><th>وضعیت</th></tr></thead><tbody>
+              {assets.map((item) => { const isUp = item.trend === 'up'; return (
+                <tr key={item.id} className={isUp ? 'market-row-up' : 'market-row-down'}>
+                  <td><Link href={`/assets/${item.id}`} className="asset-row-btn"><span className="asset-row-icon" aria-hidden="true">{isUp ? '↗' : '↘'}</span><span className="asset-row-name"><strong>{item.name}</strong>{item.demo && <DemoBadge />}</span></Link></td>
+                  <td className="market-price">{formatNumber(item.price)}</td>
+                  <td><span className={isUp ? 'change-pill positive' : 'change-pill negative'}>{isUp ? '▲' : '▼'} {item.change}</span></td>
+                  <td><span className={isUp ? 'status-pill-table positive' : 'status-pill-table negative'}><span className="status-dot" aria-hidden="true" />{isUp ? 'افزایش' : 'کاهش'}</span></td>
+                </tr>)})}
+            </tbody></table></div>
           </div>
-
           <div className="side-stack">
-            <div className="panel">
-              <div className="panel-header">
-                <div className="panel-title">نمودار بیت‌کوین (دلار، ۷ روز)</div>
-                {chartChange !== null && (
-                  <div className={`panel-filter ${chartChange >= 0 ? 'positive' : 'negative'}`}>
-                    {formatChange(chartChange)}
-                  </div>
-                )}
-              </div>
-              <div className="chart-wrap">
-                {realChart ? (
-                  <PriceChart data={chartData} />
-                ) : (
-                  <p style={{ padding: 24, color: 'var(--muted)' }}>
-                    نمودار در حال حاضر در دسترس نیست. کمی بعد دوباره امتحان کنید.
-                  </p>
-                )}
-              </div>
+            <div className="panel chart-panel">
+              <div className="panel-header chart-panel-header"><div><div className="panel-title">نمودار بیت‌کوین</div><div className="chart-subtitle">روند قیمت در ۷ روز گذشته</div></div>{chartChange !== null && <div className={`chart-change ${chartChange >= 0 ? 'positive' : 'negative'}`}><span aria-hidden="true">{chartChange >= 0 ? '↗' : '↘'}</span>{formatChange(chartChange)}</div>}</div>
+              <div className="chart-summary"><div><span>قیمت فعلی</span><strong>{market.bitcoin ? formatPrice(market.bitcoin) : '—'}</strong><small>دلار</small></div><div><span>بازه</span><strong>۷ روز</strong><small>روند کوتاه‌مدت</small></div><div><span>داده</span><strong>{realChart ? 'زنده' : '—'}</strong><small>{realChart ? 'آخرین داده موجود' : 'در دسترس نیست'}</small></div></div>
+              <div className="chart-wrap">{realChart ? <PriceChart data={chartData} /> : <p className="chart-empty">نمودار در حال حاضر در دسترس نیست. کمی بعد دوباره امتحان کنید.</p>}</div>
             </div>
-
-            <div className="mini-card">
-              <h3>چک‌لیست بازار</h3>
-              <p>
-                بازار در حالت نوسانی قرار دارد، اما روند کلی همچنان مثبت است.
-                سرمایه‌گذاران بیشتر روی دارایی‌های کم‌ریسک و فلزات گران‌بها
-                تمرکز دارند.
-              </p>
-            </div>
+            <div className="mini-card market-insight-card"><div className="insight-heading"><div><span className="insight-kicker">MARKET PULSE</span><h3>چک‌لیست بازار</h3></div><span className="insight-icon" aria-hidden="true">◈</span></div><div className="insight-list"><div><span>روند کلی</span><strong>مثبت</strong></div><div><span>تمرکز بازار</span><strong>طلا و دارایی دیجیتال</strong></div><div><span>ریسک کوتاه‌مدت</span><strong>نوسانی</strong></div></div></div>
           </div>
         </section>
-
         <section className="dashboard-section market-board-section">
           <div className="section-heading">
             <div className="panel-title">ارز، طلا و انرژی</div>
@@ -256,26 +206,11 @@ export default async function HomePage() {
         </section>
 
         <section className="panel dashboard-section news-section">
-          <div className="panel-header">
-            <div className="panel-title">اخبار و تحلیل‌ها</div>
-            <div className="panel-filter">آخرین اخبار</div>
+          <div className="panel-header"><div className="panel-title">اخبار و تحلیل‌ها</div><div className="panel-filter">آخرین اخبار</div></div>
+          <div className="news-grid">
+            {latestNews.length === 0 ? <p className="news-empty">در حال حاضر خبری دریافت نشد.</p> : latestNews.map((item) => <NewsCard key={item.id} item={item} />)}
           </div>
-
-          <div
-            style={{
-              padding: '0 18px 12px',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '16px',
-            }}
-          >
-            {latestNews.length === 0 ? (
-              <p style={{ color: 'var(--muted)' }}>در حال حاضر خبری دریافت نشد.</p>
-            ) : (
-              latestNews.map((item) => <NewsCard key={item.id} item={item} />)
-            )}
-          </div>
-        </section>
+        </section>        </section>
       </div>
     </AppShell>
   )
