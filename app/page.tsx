@@ -157,18 +157,17 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="stats-grid">
+        <section className="dashboard-section stats-section" aria-label="شاخص‌های اصلی بازار">
           {assets.map((item) => (
             <Link key={item.id} href={`/assets/${item.id}`} className="stat-card">
-              <div className="stat-label">
-                {item.name}
-                {item.demo && <DemoBadge />}
+              <div className="stat-card-top">
+                <div className="stat-label">{item.name}</div>
+                <span className={item.demo ? 'market-badge sample' : 'market-badge live'}>{item.demo ? 'نمونه' : 'زنده'}</span>
               </div>
               <div className="stat-value">{formatNumber(item.price)}</div>
               <div className="stat-meta">
-                <span className={item.trend === 'up' ? 'positive' : 'negative'}>
-                  {item.trend === 'up' ? '▲' : '▼'} {item.change}
-                </span>
+                <span className={item.trend === 'up' ? 'positive' : 'negative'}><span aria-hidden="true">{item.trend === 'up' ? '▲' : '▼'}</span> {item.change}</span>
+                <span className="stat-status">{item.trend === 'up' ? 'روند صعودی' : 'روند نزولی'}</span>
               </div>
             </Link>
           ))}
@@ -246,8 +245,8 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section style={{ marginTop: 20 }}>
-          <div className="panel-header" style={{ padding: '0 4px 12px' }}>
+        <section className="dashboard-section market-board-section">
+          <div className="section-heading">
             <div className="panel-title">ارز، طلا و انرژی</div>
             <Link href="/markets" className="panel-filter">
               صفحه‌ی کامل
@@ -256,7 +255,7 @@ export default async function HomePage() {
           <MarketBoard groups={board} />
         </section>
 
-        <section className="panel" style={{ marginTop: 20 }}>
+        <section className="panel dashboard-section news-section">
           <div className="panel-header">
             <div className="panel-title">اخبار و تحلیل‌ها</div>
             <div className="panel-filter">آخرین اخبار</div>
