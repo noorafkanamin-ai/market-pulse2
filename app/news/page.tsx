@@ -3,6 +3,8 @@ import AppShell from '@/components/AppShell'
 import NewsCard from '@/components/NewsCard'
 import Link from 'next/link'
 
+export const metadata = { title: 'اخبار اقتصادی | Market Pulse', description: 'آخرین تیترها و خلاصه خبرهای اقتصادی از منابع منتخب.' } as const
+
 export const revalidate = 900
 
 export default async function NewsPage() {
