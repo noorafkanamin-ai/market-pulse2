@@ -10,7 +10,7 @@ npm run build    # بررسی build معمولی Next.js
 
 ## Deploy روی Cloudflare Workers
 
-این پروژه برای Cloudflare Workers با OpenNext آماده شده است. OpenNext یک پروژه Next.js موجود را به Worker قابل اجرا روی Cloudflare تبدیل می‌کند. citeturn0search0turn0search1
+این پروژه برای Cloudflare Workers با OpenNext آماده شده است. OpenNext یک پروژه Next.js موجود را به Worker قابل اجرا روی Cloudflare تبدیل می‌کند.
 
 ### Cloudflare Workers Builds
 
@@ -19,7 +19,7 @@ npm run build    # بررسی build معمولی Next.js
 - **Build command:** `npx @opennextjs/cloudflare build`
 - **Deploy command:** `npx @opennextjs/cloudflare deploy`
 
-این مقادیر مطابق راهنمای فعلی OpenNext برای Workers Builds هستند. citeturn0search3
+این مقادیر مطابق راهنمای فعلی OpenNext برای Workers Builds هستند.
 
 ### اجرای محلی با runtime کلودفلر
 
@@ -47,7 +47,7 @@ npm run setup:env -- YOUR_NAVASAN_API_KEY
 npm run deploy
 ```
 
-OpenNext در زمان deploy از Wrangler برای انتشار Worker استفاده می‌کند. citeturn0search2
+OpenNext در زمان deploy از Wrangler برای انتشار Worker استفاده می‌کند.
 
 ### فایل‌های Cloudflare
 
