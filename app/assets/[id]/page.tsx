@@ -8,10 +8,11 @@ import { notFound } from 'next/navigation'
 
 export const revalidate = 30
 
-export default async function AssetPage({ params }: { params: { id: string } }) {
+export default async function AssetPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const market = await fetchMarketData()
   const assets = getAssets(market)
-  const asset = assets.find((a) => a.id === params.id)
+  const asset = assets.find((a) => a.id === id)
 
   if (!asset) notFound()
 
