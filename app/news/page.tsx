@@ -25,7 +25,7 @@ export default async function NewsPage() {
           </header>
 
           {items.length === 0 ? (
-            <div className="panel" style={{ padding: 24 }}>
+            <div className="panel news-empty-panel">
               در حال حاضر خبری دریافت نشد. چند دقیقه بعد دوباره امتحان کنید.
             </div>
           ) : (
@@ -36,7 +36,7 @@ export default async function NewsPage() {
             </div>
           )}
 
-          <p style={{ marginTop: 16, fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.9 }}>
+          <p className="news-source-note">
             منابع: {NEWS_FEEDS.map((f) => f.name).join('، ') || '—'}. حق نشر خبرها متعلق به منابع
             آن‌هاست و Market Pulse فقط تیتر و خلاصه‌ی کوتاه را همراه لینک نمایش می‌دهد.
           </p>
