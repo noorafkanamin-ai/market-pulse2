@@ -1,0 +1,15 @@
+{
+  "marketIndex": {
+    "value": 7977000,
+    "changePercent": 2.5,
+    "updatedAt": "۱۴۰۵/۰۶/۰۴"
+  },
+  "bulletins": [
+    {
+      "date": "۱۴۰۵/۰۶/۰۳",
+      "title": "عنوان بخشنامه یا خبر رسمی",
+      "summary": "یکی دو جمله خلاصه (اختیاری)",
+      "url": "https://example.com/لینک-منبع-اختیاری"
+    }
+  ]
+}

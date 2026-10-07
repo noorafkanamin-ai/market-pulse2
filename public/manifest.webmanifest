@@ -1,0 +1,23 @@
+{
+  "id": "/",
+  "name": "Market Pulse - بازار دیجیتال ایران",
+  "short_name": "Market Pulse",
+  "description": "قیمت لحظه‌ای ارز، طلا، سکه و رمزارزها",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "fa",
+  "dir": "rtl",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "ارز، طلا و انرژی", "short_name": "ارز و طلا", "url": "/markets" },
+    { "name": "رمزارزها", "short_name": "رمزارزها", "url": "/markets?tab=crypto" }
+  ]
+}
