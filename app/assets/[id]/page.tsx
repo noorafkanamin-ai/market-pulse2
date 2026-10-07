@@ -86,15 +86,15 @@ export default async function AssetPage({ params }: { params: { id: string } }) 
 
           {realHistory ? (
             <>
-              <div className="asset-price-label" style={{ marginTop: 16 }}>
+              <div className="asset-price-label asset-chart-label">
                 نمودار ۷ روز اخیر
               </div>
-              <div className="chart-wrap">
+              <div className="chart-wrap asset-chart-wrap">
                 <PriceChart data={chartData} />
               </div>
             </>
           ) : (
-            <p style={{ marginTop: 16, color: 'var(--muted)', fontSize: '0.85rem' }}>
+            <p className="asset-chart-empty">
               نمودار و نرخ تاریخی این دارایی هنوز به منبع داده‌ی واقعی وصل نشده است.
             </p>
           )}
