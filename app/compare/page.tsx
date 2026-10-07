@@ -5,6 +5,8 @@ import PriceChart from '@/components/PriceChart'
 import DemoBadge from '@/components/DemoBadge'
 import Link from 'next/link'
 
+export const metadata = { title: 'مقایسه دارایی‌ها | Market Pulse', description: 'مقایسه قیمت و روند دارایی‌های بازار در یک نگاه.' } as const
+
 export const revalidate = 30
 
 export default async function ComparePage() {
