@@ -10,7 +10,7 @@ const vazir = Vazirmatn({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: process.env.NEXT_PUBLIC_APP_URL ? new URL(process.env.NEXT_PUBLIC_APP_URL) : undefined,
   title: 'Market Pulse - بازار دیجیتال ایران',
   description: 'قیمت لحظه‌ای طلا، ارز، بیت‌کوین و اخبار بازار',
   keywords: 'market, price, gold, dollar, bitcoin, ethereum, news',
@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   applicationName: 'Market Pulse',
   appleWebApp: { capable: true, title: 'Market Pulse', statusBarStyle: 'default' },
   formatDetection: { telephone: false },
+  openGraph: { type: 'website', locale: 'fa_IR', siteName: 'Market Pulse', title: 'Market Pulse - بازار دیجیتال ایران', description: 'قیمت لحظه‌ای طلا، ارز، بیت‌کوین و اخبار بازار' },
+  twitter: { card: 'summary', title: 'Market Pulse - بازار دیجیتال ایران', description: 'قیمت لحظه‌ای طلا، ارز، بیت‌کوین و اخبار بازار' },
+  robots: { index: true, follow: true },
   icons: {
     icon: [{ url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' }],
     apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
