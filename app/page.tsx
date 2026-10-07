@@ -210,7 +210,7 @@ export default async function HomePage() {
           <div className="news-grid">
             {latestNews.length === 0 ? <p className="news-empty">در حال حاضر خبری دریافت نشد.</p> : latestNews.map((item) => <NewsCard key={item.id} item={item} />)}
           </div>
-        </section>        </section>
+        </section>
       </div>
     </AppShell>
   )
