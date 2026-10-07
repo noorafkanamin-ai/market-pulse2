@@ -5,6 +5,8 @@ import DemoBadge from '@/components/DemoBadge'
 import { marketIndex, bulletins, safeUrl } from '@/lib/manual'
 import Link from 'next/link'
 
+export const metadata = { title: 'گزارش‌های روزانه بازار | Market Pulse', description: 'گزارش روزانه بازار، طلا، ارز، رمزارز و اخبار رسمی.' } as const
+
 export const revalidate = 30
 
 export default async function ReportsPage() {
