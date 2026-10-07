@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, ReactNode } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { marketIndex } from '@/lib/manual'
 import InstallButton from './InstallButton'
 import { formatChange, formatNumber } from '@/lib/utils'
@@ -27,6 +27,7 @@ const SEARCH_TARGETS: Array<{ keywords: string[]; href: string }> = [
 export default function AppShell({ children }: AppShellProps) {
   const [search, setSearch] = useState('')
   const router = useRouter()
+  const pathname = usePathname()
 
   // به‌روزرسانی خودکار: فقط وقتی تب دیده می‌شود، و فوراً وقتی کاربر به تب برمی‌گردد
   useEffect(() => {
@@ -67,48 +68,7 @@ export default function AppShell({ children }: AppShellProps) {
           </div>
         </div>
 
-        <nav className="sidebar-nav">
-          <Link href="/" className="nav-item">
-            <span>🏠</span>
-            <span>صفحه اصلی</span>
-          </Link>
-          <Link href="/compare" className="nav-item">
-            <span>📊</span>
-            <span>مقایسه</span>
-          </Link>
-          <Link href="/markets" className="nav-item">
-            <span>🌍</span>
-            <span>ارز، طلا و انرژی</span>
-          </Link>
-          <Link href="/markets?tab=crypto" className="nav-item">
-            <span>🪙</span>
-            <span>رمزارزها</span>
-          </Link>
-          <Link href="/reports" className="nav-item">
-            <span>📈</span>
-            <span>گزارش‌ها</span>
-          </Link>
-          <Link href="/assets/gold" className="nav-item">
-            <span>🟡</span>
-            <span>طلا</span>
-          </Link>
-          <Link href="/assets/dollar" className="nav-item">
-            <span>💵</span>
-            <span>دلار</span>
-          </Link>
-          <Link href="/assets/bitcoin" className="nav-item">
-            <span>₿</span>
-            <span>بیت‌کوین</span>
-          </Link>
-          <Link href="/assets/ethereum" className="nav-item">
-            <span>◆</span>
-            <span>اتریوم</span>
-          </Link>
-          <Link href="/news" className="nav-item">
-            <span>📰</span>
-            <span>اخبار</span>
-          </Link>
-        </nav>
+        <nav className="sidebar-nav">\n          <Link href="/" className={`nav-item${pathname === "/" ? " active" : ""}`} aria-current={pathname === "/" ? "page" : undefined}>\n            <span className="nav-icon">🏠</span>\n            <span>صفحه اصلی</span>\n          </Link>\n          <Link href="/compare" className={`nav-item${pathname === "/compare" ? " active" : ""}`} aria-current={pathname === "/compare" ? "page" : undefined}>\n            <span className="nav-icon">📊</span>\n            <span>مقایسه</span>\n          </Link>\n          <Link href="/markets" className={`nav-item${pathname === "/markets" ? " active" : ""}`} aria-current={pathname === "/markets" ? "page" : undefined}>\n            <span className="nav-icon">🌍</span>\n            <span>ارز، طلا و انرژی</span>\n          </Link>\n          <Link href="/markets?tab=crypto" className={`nav-item${pathname === "/markets" ? " active" : ""}`} aria-current={pathname === "/markets" ? "page" : undefined}>\n            <span className="nav-icon">🪙</span>\n            <span>رمزارزها</span>\n          </Link>\n          <Link href="/reports" className={`nav-item${pathname === "/reports" ? " active" : ""}`} aria-current={pathname === "/reports" ? "page" : undefined}>\n            <span className="nav-icon">📈</span>\n            <span>گزارش‌ها</span>\n          </Link>\n          <Link href="/assets/gold" className={`nav-item${pathname === "/assets/gold" ? " active" : ""}`} aria-current={pathname === "/assets/gold" ? "page" : undefined}>\n            <span className="nav-icon">🟡</span>\n            <span>طلا</span>\n          </Link>\n          <Link href="/assets/dollar" className={`nav-item${pathname === "/assets/dollar" ? " active" : ""}`} aria-current={pathname === "/assets/dollar" ? "page" : undefined}>\n            <span className="nav-icon">💵</span>\n            <span>دلار</span>\n          </Link>\n          <Link href="/assets/bitcoin" className={`nav-item${pathname === "/assets/bitcoin" ? " active" : ""}`} aria-current={pathname === "/assets/bitcoin" ? "page" : undefined}>\n            <span className="nav-icon">₿</span>\n            <span>بیت‌کوین</span>\n          </Link>\n          <Link href="/assets/ethereum" className={`nav-item${pathname === "/assets/ethereum" ? " active" : ""}`} aria-current={pathname === "/assets/ethereum" ? "page" : undefined}>\n            <span className="nav-icon">◆</span>\n            <span>اتریوم</span>\n          </Link>\n          <Link href="/news" className={`nav-item${pathname === "/news" ? " active" : ""}`} aria-current={pathname === "/news" ? "page" : undefined}>\n            <span className="nav-icon">📰</span>\n            <span>اخبار</span>\n          </Link>\n        </nav>
 
         <div className="sidebar-card">
           <p>شاخص کل بورس</p>
@@ -137,7 +97,7 @@ export default function AppShell({ children }: AppShellProps) {
           <div className="topbar-actions">
             <InstallButton />
             <div className="status-pill">
-              <span className="dot"></span>
+              <span className="dot" aria-hidden="true"></span>
               آنلاین
             </div>
           </div>
