@@ -1,13 +1,16 @@
 node_modules/
 .next/
+.open-next/
 .env
 .env.local
 .env.*.local
 *.log
 *.tsbuildinfo
 next-env.d.ts
+cloudflare-env.d.ts
 .DS_Store
 .vercel
+.wrangler
 out/
 build/
 dist/
