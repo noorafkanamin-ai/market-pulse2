@@ -7,12 +7,18 @@ import Link from 'next/link'
 export default async function MarketsPage({
   searchParams,
 }: {
-  searchParams: { tab?: string; q?: string }
+  searchParams: Promise<{ tab?: string; q?: string }>
 }) {
+  const resolvedSearchParams = await searchParams
   const [market, coins] = await Promise.all([fetchMarketData(), fetchTopCrypto(200)])
   const board = getBoard(market)
 
-  const initialTab = searchParams.tab === 'crypto' ? 'crypto' : searchParams.tab === 'fiat' ? 'fiat' : null
+  const initialTab =
+    resolvedSearchParams.tab === 'crypto'
+      ? 'crypto'
+      : resolvedSearchParams.tab === 'fiat'
+      ? 'fiat'
+      : null
 
   return (
     <AppShell>
@@ -33,7 +39,7 @@ export default async function MarketsPage({
             coins={coins}
             tomanRate={market.live.fx ? market.usdIrr : null}
             initialTab={initialTab}
-            initialQuery={(searchParams.q ?? '').slice(0, 60)}
+            initialQuery={(resolvedSearchParams.q ?? '').slice(0, 60)}
           />
 
           <p style={{ marginTop: 16, fontSize: '0.85rem', color: 'var(--muted)' }}>
@@ -52,5 +58,7 @@ export default async function MarketsPage({
         </div>
       </div>
     </AppShell>
+  )
+}
   )
 }
