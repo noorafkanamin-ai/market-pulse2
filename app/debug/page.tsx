@@ -12,8 +12,10 @@ const SAMPLE_KEYS = ['usd_sell', '18ayar', 'sekkeh', 'eur']
 export default async function DebugPage({
   searchParams,
 }: {
-  searchParams: { fresh?: string }
+  searchParams: Promise<{ fresh?: string }>
 }) {
+  const { fresh } = await searchParams
+
   if (process.env.NODE_ENV === 'production') notFound()
 
   const raw = process.env.NAVASAN_API_KEY
@@ -28,7 +30,7 @@ export default async function DebugPage({
     if (raw !== raw.trim()) checks.push(['هشدار', 'اول یا آخر کلید فاصله یا خط جدید دارد'])
     if (/^["']|["']$/.test(raw)) checks.push(['هشدار', 'کلید داخل گیومه است؛ گیومه را بردار'])
 
-    if (searchParams.fresh === '1') {
+    if (fresh === '1') {
       try {
         const res = await fetch(
           `https://api.navasan.tech/latest/?api_key=${encodeURIComponent(raw.trim())}`,
