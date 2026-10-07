@@ -89,7 +89,7 @@ export default async function ReportsPage() {
 
               <div className="report-list">
                 {bulletins.length === 0 && (
-                  <p style={{ color: 'var(--muted)' }}>در حال حاضر بخشنامه‌ای ثبت نشده است.</p>
+                  <p className="report-empty">در حال حاضر بخشنامه‌ای ثبت نشده است.</p>
                 )}
                 {bulletins.map((b, i) => {
                   const url = safeUrl(b.url)
